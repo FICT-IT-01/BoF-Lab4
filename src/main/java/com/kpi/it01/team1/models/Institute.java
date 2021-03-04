@@ -1,21 +1,21 @@
 package com.kpi.it01.team1.models;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Institute {
     private String name;
-    private final HashMap<String, Faculty> faculties;
+    private final ArrayList<Faculty> faculties;
 
     public Institute(String name) {
         this.name = name;
-        faculties = new HashMap<>();
+        faculties = new ArrayList<>();
     }
 
     public String getName() {
         return name;
     }
 
-    public HashMap<String, Faculty> getFaculties() {
+    public ArrayList<Faculty> getFaculties() {
         return faculties;
     }
 
