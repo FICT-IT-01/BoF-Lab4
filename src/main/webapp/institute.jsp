@@ -3,14 +3,14 @@
 
 <html>
     <head>
-        <title>JSP - Hello World</title>
+        <title>${institute}</title>
         <style>
             *{
-                text-align: center;
                 font-family: Arial;
             }
             td{
                 padding: 10px;
+                text-align: center;
             }
         </style>
     </head>
@@ -26,10 +26,21 @@
             </tr>
             <c:forEach var="faculty" items="${faculties}">
             <tr>
-                <td><p><c:out value="${faculty.getName()}" /></p></td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/kpi?action=goToFacutly&facultyName=${faculty.getName()}">
+                        <c:out value="${faculty.getName()}" />
+                    </a>
+                </td>
                 <td><p><c:out value="${faculty.getStudents().size()}" /></p></td>
             </tr>
             </c:forEach>
         </table>
+        <form method="post" action="${pageContext.request.contextPath}/kpi?action=submit">
+            <h5>New faculty</h5>
+            <dl>
+                <dd><input type="text" name="name" placeholder="Enter name" /></dd>
+            </dl>
+            <button type="submit">Add</button>
+        </form>
     </body>
 </html>

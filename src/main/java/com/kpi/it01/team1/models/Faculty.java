@@ -18,22 +18,4 @@ public class Faculty {
     public ArrayList<Student> getStudents() {
         return students;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Faculty faculty = (Faculty) o;
-
-        if (!name.equals(faculty.name)) return false;
-        return students.equals(faculty.students);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + students.hashCode();
-        return result;
-    }
 }
