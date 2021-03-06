@@ -2,11 +2,11 @@ package com.kpi.it01.team1.models;
 
 import java.util.ArrayList;
 
-public class Institute {
-    private String name;
-    private final ArrayList<Faculty> faculties;
+public class InstituteModel {
+    private final String name;
+    private final ArrayList<FacultyModel> faculties;
 
-    public Institute(String name) {
+    public InstituteModel(String name) {
         this.name = name;
         faculties = new ArrayList<>();
     }
@@ -15,7 +15,7 @@ public class Institute {
         return name;
     }
 
-    public ArrayList<Faculty> getFaculties() {
+    public ArrayList<FacultyModel> getFaculties() {
         return faculties;
     }
 }
