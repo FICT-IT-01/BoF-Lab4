@@ -3,7 +3,7 @@
 
 <html>
     <head>
-        <title>${institute}</title>
+        <title>${institute.getName()}</title>
         <link rel="stylesheet" href="css/shared.css">
     </head>
     <body>
@@ -18,14 +18,53 @@
     </div>
 
     <hr>
+    <table>
+        <tr>
+            <td>Total amount of students </td>
+            <td><c:out value="${institute.getTotalAmountOfStudents()}"/></td>
+        </tr>
+        <tr>
+            <td>Biggest Faculty </td>
+            <td><c:out value="${institute.getBiggestFaculty().getName()}"/></td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h3>Students with average mark in range from 95 to 100</h3>
 
     <table id="myTable">
+        <tr>
+            <th>Student book id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Phone number</th>
+            <th>Average mark</th>
+        </tr>
+
+        <c:forEach var="student" items="${institute.getStudentsWithMarkInRange()}">
+            <tr>
+                <td><c:out value="${student.getBookNumber()}"/></td>
+                <td><c:out value="${student.getFirstName()}"/></td>
+                <td><c:out value="${student.getLastName()}"/></td>
+                <td><c:out value="${student.getPhoneNumber()}"/></td>
+                <td><c:out value="${student.getAverageMark()}"/></td>
+            </tr>
+        </c:forEach>
+    </table>
+
+
+    <hr>
+
+    <h3>Faculties at <c:out value="${institute.getName)()}"/> </h3>
+
+    <table>
         <tr>
             <th>Faculty Name</th>
             <th>Students Amount</th>
         </tr>
 
-        <c:forEach var="faculty" items="${faculties}">
+        <c:forEach var="faculty" items="${institute.getFaculties()}">
             <tr>
                 <td>
                     <a href="${pageContext.request.contextPath}/kpi?action=goToFacutly&facultyName=${faculty.getName()}">

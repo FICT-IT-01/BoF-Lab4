@@ -1,6 +1,7 @@
 package com.kpi.it01.team1.controllers;
 
 import com.kpi.it01.team1.models.*;
+import com.kpi.it01.team1.services.InstituteInformationFounderService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -10,18 +11,25 @@ import java.io.IOException;
 @WebServlet(name = "InstituteControllerServlet", value = "/kpi")
 public class InstituteControllerServlet extends HttpServlet {
     private InstituteModel kpiInstitute;
+    private InstituteInformationFounderService informationFounderService;
 
     @Override
     public void init() throws ServletException {
         super.init();
 
+        informationFounderService = new InstituteInformationFounderService();
         kpiInstitute = new InstituteModel("KPI");
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("faculties", kpiInstitute.getFaculties().toArray());
-        request.setAttribute("institute", kpiInstitute.getName());
+
+        kpiInstitute.setTotalAmountOfStudents(informationFounderService.getTotalStudentsAmount(kpiInstitute));
+        kpiInstitute.setBiggestFaculty(informationFounderService.getBiggestFaculty(kpiInstitute));
+        kpiInstitute.setStudentsWithMarkInRange(
+                informationFounderService.getStudentsWithAverageMarkInRange(kpiInstitute, new MarkRange(95, 100)));
+
+        request.setAttribute("institute", kpiInstitute);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/institute.jsp");
         dispatcher.forward(request, response);

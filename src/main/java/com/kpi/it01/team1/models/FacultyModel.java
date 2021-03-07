@@ -6,6 +6,7 @@ public class FacultyModel {
     private final String name;
     private final ArrayList<StudentModel> students;
 
+
     public FacultyModel(String name) {
         this.name = name;
         students = new ArrayList<>();
