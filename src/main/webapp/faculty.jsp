@@ -20,13 +20,13 @@
             <input type="text" id="lastName" name="lastName" placeholder="Your last name..">
 
             <label for="bookNumber">Student Book Number</label>
-            <input type="text" id="bookNumber" name="bookNumber" placeholder="Your phone number..">
+            <input type="text" id="bookNumber" name="bookNumber" placeholder="Your book number..">
 
             <label for="phoneNumber">Phone Number</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Your last name..">
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Your phone number..">
 
             <label for="averageMark">Average Mark</label>
-            <input type="text" id="averageMark" name="averageMark" placeholder="Your last name..">
+            <input type="text" id="averageMark" name="averageMark" placeholder="Your average mark..">
 
             <input type="submit" value="Submit">
         </form>
