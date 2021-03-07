@@ -8,11 +8,11 @@
     </head>
     <body>
     <div class="container">
-        <form method="post" action="${pageContext.request.contextPath}/kpi?action=submit">
+        <form method="post" action="${pageContext.request.contextPath}/kpi?action=submit&instituteName=kpi">
             <h3>New faculty</h3>
 
-            <label for="name">Faculty Name</label>
-            <input type="text" id="name" name="name" placeholder="Faculty name..">
+            <label for="facultyName">Faculty Name</label>
+            <input type="text" id="facultyName" name="facultyName" placeholder="Faculty name..">
             <input type="submit" value="Submit">
         </form>
     </div>
@@ -33,7 +33,7 @@
 
     <h3>Students with average mark in range from 95 to 100</h3>
 
-    <table id="myTable">
+    <table>
         <tr>
             <th>Student book id</th>
             <th>First name</th>
@@ -53,8 +53,9 @@
         </c:forEach>
     </table>
 
-
     <hr>
+
+    <h3>Faculties at <c:out value="${institute.getName()}"/> </h3>
 
     <table>
         <tr>
@@ -65,7 +66,7 @@
         <c:forEach var="faculty" items="${institute.getFaculties()}">
             <tr>
                 <td>
-                    <a href="${pageContext.request.contextPath}/kpi?action=goToFacutly&facultyName=${faculty.getName()}">
+                    <a href="${pageContext.request.contextPath}/faculty?facultyName=${faculty.getName()}">
                     <c:out value="${faculty.getName()}" /></a>
                 </td>
                 <td><c:out value="${faculty.getStudents().size()}" /></td>

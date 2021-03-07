@@ -7,12 +7,12 @@
         <title>${faculty.getName()}</title>
     </head>
 
-    <p><a href="${pageContext.request.contextPath}/kpi}">Back to institute</a></p>
+    <p><a href="${pageContext.request.contextPath}/kpi?instituteName=kpi">Back to institute</a></p>
 
 
     <hr>
     <div class="container">
-        <form method="post" action="${pageContext.request.contextPath}/faculty?action=submit&faculty=${faculty.getName()}">
+        <form method="post" action="${pageContext.request.contextPath}/faculty?action=submit&facultyName=${faculty.getName()}">
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" name="firstName" placeholder="Your first name..">
 
