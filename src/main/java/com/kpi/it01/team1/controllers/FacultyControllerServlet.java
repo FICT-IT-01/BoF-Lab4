@@ -3,7 +3,7 @@ package com.kpi.it01.team1.controllers;
 import com.kpi.it01.team1.Constants;
 import com.kpi.it01.team1.data.providers.InMemoryDataProvider;
 import com.kpi.it01.team1.models.*;
-import com.kpi.it01.team1.services.StudentValidationService;
+import com.kpi.it01.team1.services.StudentCreationValidationService;
 import com.kpi.it01.team1.services.ValidationService;
 
 import javax.servlet.*;
@@ -20,7 +20,7 @@ public class FacultyControllerServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
-        validationService = new StudentValidationService<StudentModel>();
+        validationService = new StudentCreationValidationService<StudentModel>();
     }
 
     @Override
@@ -29,12 +29,11 @@ public class FacultyControllerServlet extends HttpServlet {
         FacultyModel facultyModel = getFacultyByName(request.getParameter(Constants.INSTITUTE_PARAMETER_NAME),
                                                      request.getParameter(Constants.FACULTY_PARAMETER_NAME));
 
-        if (facultyModel != null) {
-            processRequest(request, response, facultyModel);
+        if (facultyModel == null) {
+            response.sendError(400);
         }
-        else {
-            // TODO: Error faculty not exists yet or smth went wrong
-        }
+
+        processRequest(request, response, facultyModel);
 
     }
 
@@ -45,8 +44,8 @@ public class FacultyControllerServlet extends HttpServlet {
                                                      request.getParameter(Constants.FACULTY_PARAMETER_NAME));
 
         if (facultyModel == null) {
-            // TODO: Show exception page. Required cause smth broke at parameters and it`s impossible
-            //  to receive faculty model from params
+            response.sendError(422);
+            return;
         }
 
         StudentModel studentModel = new StudentModel(
@@ -72,10 +71,10 @@ public class FacultyControllerServlet extends HttpServlet {
             processRequest(request, response, facultyModel);
         }
         else {
-            // TODO: Add show alert or a pop-up with found errors. Errors could be found at
-            //  validationResult, getErrors : ArrayList<String>
+            request.setAttribute("validationResult", validationResult);
 
-            response.sendError(406, validationResult.getErrors().toString());
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ErrorPage400.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

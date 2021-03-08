@@ -7,6 +7,7 @@ public class ValidationResultModel {
     private ArrayList<String> validationErrors;
 
     public ValidationResultModel() {
+        validationResult = true;
         this.validationErrors = new ArrayList<>();
     }
 
