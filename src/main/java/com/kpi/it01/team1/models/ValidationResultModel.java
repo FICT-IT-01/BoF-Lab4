@@ -26,4 +26,12 @@ public class ValidationResultModel {
     public void addValidationError(String validationError) {
         this.validationErrors.add(validationError);
     }
+
+    public String getErrorsString() {
+        String result = "";
+        for (String i: validationErrors) {
+            result += i + " ";
+        }
+        return result;
+    }
 }

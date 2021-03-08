@@ -7,6 +7,13 @@
         <link rel="stylesheet" href="css/shared.css">
     </head>
     <body>
+
+    <c:if test="${validationResult != null}">
+        <script>
+            alert("${validationResult.getErrorsString()}")
+        </script>
+    </c:if>
+
     <div class="container">
         <form method="post" action="${pageContext.request.contextPath}/institute?action=submit&instituteName=${institute.getName()}">
             <h3>New faculty</h3>

@@ -66,22 +66,17 @@ public class FacultyControllerServlet extends HttpServlet {
             if ("submit".equals(request.getParameter("action"))) {
                 facultyModel.getStudents().add(studentModel);
             }
-
-            processRequest(request, response, facultyModel);
-        }
-        else {
+        } else {
             request.setAttribute("validationResult", validationResult);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/ErrorPage400.jsp");
-            dispatcher.forward(request, response);
         }
+
+        processRequest(request, response, facultyModel);
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response, FacultyModel faculty)
             throws ServletException, IOException {
         request.setAttribute("faculty", faculty);
         request.setAttribute("institute", InMemoryDataProvider.getInstituteByName(request.getParameter(Constants.INSTITUTE_PARAMETER_NAME)));
-
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/faculty.jsp");
         dispatcher.forward(request, response);
