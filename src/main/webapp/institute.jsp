@@ -66,7 +66,7 @@
         <c:forEach var="faculty" items="${institute.getFaculties()}">
             <tr>
                 <td>
-                    <a href="${pageContext.request.contextPath}/faculty?facultyName=${faculty.getName()}">
+                    <a href="${pageContext.request.contextPath}/faculty?instituteName=${institute.getName()}&facultyName=${faculty.getName()}">
                     <c:out value="${faculty.getName()}" /></a>
                 </td>
                 <td><c:out value="${faculty.getStudents().size()}" /></td>

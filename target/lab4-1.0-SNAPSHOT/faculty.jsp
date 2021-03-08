@@ -12,7 +12,7 @@
 
     <hr>
     <div class="container">
-        <form method="post" action="${pageContext.request.contextPath}/faculty?action=submit&facultyName=${faculty.getName()}">
+        <form method="post" action="${pageContext.request.contextPath}/faculty?action=submit&instituteName=${institute.getName()}&facultyName=${faculty.getName()}">
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" name="firstName" placeholder="Your first name..">
 
