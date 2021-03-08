@@ -34,7 +34,6 @@ public class FacultyControllerServlet extends HttpServlet {
         }
 
         processRequest(request, response, facultyModel);
-
     }
 
     @Override

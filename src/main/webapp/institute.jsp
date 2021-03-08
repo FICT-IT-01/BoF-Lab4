@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
@@ -8,7 +8,7 @@
     </head>
     <body>
     <div class="container">
-        <form method="post" action="${pageContext.request.contextPath}/kpi?action=submit&instituteName=kpi">
+        <form method="post" action="${pageContext.request.contextPath}/institute?action=submit&instituteName=${institute.getName()}">
             <h3>New faculty</h3>
 
             <label for="facultyName">Faculty Name</label>

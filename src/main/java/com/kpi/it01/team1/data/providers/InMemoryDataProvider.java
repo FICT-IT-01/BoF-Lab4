@@ -4,10 +4,17 @@ import com.kpi.it01.team1.models.FacultyModel;
 import com.kpi.it01.team1.models.InstituteModel;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class InMemoryDataProvider {
-    private static final ArrayList<InstituteModel> institutes = new ArrayList<>(Collections.singletonList(new InstituteModel("kpi")));
+    private static final ArrayList<InstituteModel> institutes = new ArrayList<>();
+
+    public static ArrayList<InstituteModel> getInstitutes() {
+        return institutes;
+    }
+
+    public static void addInstitute(InstituteModel institute) {
+        institutes.add(institute);
+    }
 
     public static InstituteModel getInstituteByName(String name) {
         return institutes.stream().filter(inst -> inst.getName().equals(name)).findFirst().orElse(null);

@@ -12,7 +12,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "InstituteControllerServlet", value = "/kpi")
+@WebServlet(name = "InstituteControllerServlet", value = "/institute")
 public class InstituteControllerServlet extends HttpServlet {
     private ValidationService<FacultyModel> validationService;
     private InstituteInformationFounderService informationFounderService;
@@ -28,15 +28,7 @@ public class InstituteControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if ("goToFaculty".equals(request.getParameter("action"))) {
-            try {
-                facultyRequest(request, response);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getLocalizedMessage());
-            }
-        } else {
-            processRequest(request, response, getInstituteByName(request.getParameter(Constants.INSTITUTE_PARAMETER_NAME)));
-        }
+        processRequest(request, response, getInstituteByName(request.getParameter(Constants.INSTITUTE_PARAMETER_NAME)));
     }
 
     @Override
@@ -68,7 +60,6 @@ public class InstituteControllerServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/ErrorPage400.jsp");
             dispatcher.forward(request, response);
         }
-
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response, InstituteModel institute)
@@ -83,25 +74,6 @@ public class InstituteControllerServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/institute.jsp");
         dispatcher.forward(request, response);
-    }
-
-    private void facultyRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IllegalArgumentException, IOException {
-        InstituteModel institute = getInstituteByName(request.getParameter(Constants.INSTITUTE_PARAMETER_NAME));
-
-        String facultyName = request.getParameter("facultyName");
-        if (institute != null) {
-            FacultyModel faculty = institute.getFaculties()
-                    .stream().filter(
-                            c -> c.getName().equals(facultyName)).findFirst()
-                    .orElseThrow(
-                            () -> new IllegalArgumentException("FacultyModel " + facultyName + " not found")
-                    );
-
-            request.setAttribute("faculty", faculty);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/faculty");
-            dispatcher.forward(request, response);
-        }
     }
 
     private InstituteModel getInstituteByName(String name) {

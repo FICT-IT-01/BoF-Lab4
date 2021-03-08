@@ -7,8 +7,8 @@
         <title>${faculty.getName()}</title>
     </head>
 
-    <p><a href="${pageContext.request.contextPath}/kpi?instituteName=kpi">Back to institute</a></p>
-    
+    <p><a href="${pageContext.request.contextPath}/institute?instituteName=${institute.getName()}">Back to institute</a></p>
+
     <hr>
     <div class="container">
         <form method="post" action="${pageContext.request.contextPath}/faculty?action=submit&instituteName=${institute.getName()}&facultyName=${faculty.getName()}">
