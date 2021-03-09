@@ -51,15 +51,12 @@ public class InstituteControllerServlet extends HttpServlet {
             if ("submit".equals(request.getParameter("action"))) {
                 institute.getFaculties().add(facultyModel);
             }
-
-            processRequest(request, response, institute);
         }
         else {
             request.setAttribute("validationResult", validationResult);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/ErrorPage400.jsp");
-            dispatcher.forward(request, response);
         }
+
+        processRequest(request, response, institute);
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response, InstituteModel institute)

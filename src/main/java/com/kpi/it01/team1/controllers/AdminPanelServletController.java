@@ -42,15 +42,12 @@ public class AdminPanelServletController extends HttpServlet {
 
         if (validationResult.isValid()) {
             InMemoryDataProvider.addInstitute(institute);
-
-            processRequest(request, response);
         }
         else {
             request.setAttribute("validationResult", validationResult);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/ErrorPage400.jsp");
-            dispatcher.forward(request, response);
         }
+
+        processRequest(request, response);
 
     }
 

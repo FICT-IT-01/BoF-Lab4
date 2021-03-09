@@ -6,12 +6,19 @@
     <link rel="stylesheet" href="css/shared.css">
 </head>
 <body>
+
+    <c:if test="${validationResult != null}">
+        <script>
+            alert("${validationResult.getErrorsString()}")
+        </script>
+    </c:if>
+
     <div class="container">
-        <form method="post" action="${pageContext.request.contextPath}?action=submit">
+        <form method="post" action="${pageContext.request.contextPath}/main">
             <h3>New Institute</h3>
 
             <label for="instituteName">Institute Name</label>
-            <input type="text" id="instituteName" name="instituteName" placeholder="Faculty name..">
+            <input type="text" id="instituteName" name="instituteName" placeholder="Institute name..">
             <input type="submit" value="Submit">
         </form>
     </div>

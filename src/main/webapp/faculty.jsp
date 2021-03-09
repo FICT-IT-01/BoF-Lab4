@@ -6,6 +6,13 @@
         <link rel="stylesheet" href="css/shared.css">
         <title>${faculty.getName()}</title>
     </head>
+    <body>
+
+    <c:if test="${validationResult != null}">
+        <script>
+            alert("${validationResult.getErrorsString()}")
+        </script>
+    </c:if>
 
     <p><a href="${pageContext.request.contextPath}/institute?instituteName=${institute.getName()}">Back to institute</a></p>
 

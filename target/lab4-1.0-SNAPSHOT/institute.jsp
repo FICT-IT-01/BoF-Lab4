@@ -8,7 +8,13 @@
     </head>
     <body>
 
-    <p><a href="${pageContext.request.contextPath}/main}">Back to main page</a></p>
+    <c:if test="${validationResult != null}">
+        <script>
+            alert("${validationResult.getErrorsString()}")
+        </script>
+    </c:if>
+
+    <p><a href="${pageContext.request.contextPath}/main">Back to main page</a></p>
 
     <hr>
     <div class="container">
