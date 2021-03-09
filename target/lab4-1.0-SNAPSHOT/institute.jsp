@@ -7,6 +7,10 @@
         <link rel="stylesheet" href="css/shared.css">
     </head>
     <body>
+
+    <p><a href="${pageContext.request.contextPath}/main}">Back to main page</a></p>
+
+    <hr>
     <div class="container">
         <form method="post" action="${pageContext.request.contextPath}/institute?action=submit&instituteName=${institute.getName()}">
             <h3>New faculty</h3>
